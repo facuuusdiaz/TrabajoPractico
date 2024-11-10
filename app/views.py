@@ -4,7 +4,8 @@ from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-
+from layers.transport.transport import getAllImages
+from layers.utilities.translator import fromRequestIntoCard
 
 
 def index_page(request):
@@ -14,11 +15,18 @@ def index_page(request):
 # si el opcional de favoritos no está desarrollado, devuelve un listado vacío.
 
 def home(request):
-    images = []
+    # Obtener personajes de la API
+    images_data = getAllImages()
+    images = [fromRequestIntoCard(image_data) for image_data in images_data]
+
+    # Mantener la lista de favoritos vacía por ahora
     favourite_list = []
 
-    return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
-
+    # Renderizar la plantilla home.html con las imágenes y la lista de favoritos
+    return render(request, 'home.html', {
+        'images': images,
+        'favourite_list': favourite_list
+    })
 def search(request):
     search_msg = request.POST.get('query', '')
 
