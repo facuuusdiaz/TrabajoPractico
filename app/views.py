@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from .services import get_images_from_api, get_user_favourites  # Importa las funciones de services.py
 
 
 def index_page(request):
@@ -13,9 +14,13 @@ def index_page(request):
 # si el opcional de favoritos no está desarrollado, devuelve un listado vacío.
 
 def home(request):
-    images = []
-    favourite_list = []
-
+    images = get_images_from_api()  # Llama a la función para obtener las imágenes de la API
+    
+    try:
+        favourite_list = get_user_favourites(request.user)  # Obtén favoritos si el usuario está autenticado
+    except:  # Si la función de favoritos no está desarrollada o hay un error
+        favourite_list = []  # Devuelve una lista vacía
+    
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
 
 def search(request):
