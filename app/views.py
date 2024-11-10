@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .services import get_images_from_api, get_user_favourites  # Importa las funciones de services.py
+
 
 
 def index_page(request):
