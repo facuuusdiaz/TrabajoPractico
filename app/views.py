@@ -14,13 +14,9 @@ def index_page(request):
 # si el opcional de favoritos no está desarrollado, devuelve un listado vacío.
 
 def home(request):
-    images = get_images_from_api()  # Llama a la función para obtener las imágenes de la API
-    
-    try:
-        favourite_list = get_user_favourites(request.user)  # Obtén favoritos si el usuario está autenticado
-    except:  # Si la función de favoritos no está desarrollada o hay un error
-        favourite_list = []  # Devuelve una lista vacía
-    
+    images = []
+    favourite_list = []
+
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
 
 def search(request):
