@@ -3,7 +3,7 @@
 from ..persistence import repositories
 from ..utilities import translator
 from django.contrib.auth import get_user
-from . import transport  # Importa el módulo transport
+from layers import transport  # Importa el módulo transport
 from .models import Card  # Importa el modelo Card (si lo tienes)
 
 def getAllImages(input=None):
