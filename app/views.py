@@ -4,8 +4,8 @@ from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from layers.transport.transport import getAllImages  # Importa la función para obtener imágenes de la API
-from layers.utilities.translator import fromRequestIntoCard , fromTemplateIntoCard # Importa la función para convertir datos en Card
+from .layers.transport.transport import getAllImages
+from .layers.utilities.translator import fromRequestIntoCard , fromTemplateIntoCard # Importa la función para convertir datos en Card
 
 
 def index_page(request):
