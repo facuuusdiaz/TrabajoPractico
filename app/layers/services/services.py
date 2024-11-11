@@ -3,17 +3,34 @@
 from ..persistence import repositories
 from ..utilities import translator
 from django.contrib.auth import get_user
+from layers.transport.transport import getAllImages as get_data_from_api
+from layers.utilities.translator import fromRequestIntoCard
 
-
+################################################################################################
 def getAllImages(input=None):
-    # obtiene un listado de datos "crudos" desde la API, usando a transport.py.
-    json_collection = []
+    json_collection = get_data_from_api(input)  # Llama a la función de transport.py
+    images = []  # Inicializa la lista de imágenes (Cards)
 
-    # recorre cada dato crudo de la colección anterior, lo convierte en una Card y lo agrega a images.
-    images = []
+    # Recorre la colección de datos JSON crudos y crea objetos Card
+    for item in json_collection:
+        try:
+            # Verifica si la clave 'image' está presente
+            if 'image' in item:
+                # Convierte el item en un objeto Card y agrégalo a la lista
+                images.append(fromRequestIntoCard(item))
+            else:
+                print("[services.py]: Se encontró un objeto sin clave 'image', omitiendo...")
 
-    return images
+        except KeyError:
+            # Manejo de errores en caso de claves faltantes
+            print("[services.py]: Error al procesar un objeto, omitiendo...")
+            pass  # Continua con el siguiente elemento
 
+    # Aplica el filtro si se proporciona input
+    if input:
+        images = [image for image in images if input.lower() in image.name.lower()]
+
+################################################################################################
 # añadir favoritos (usado desde el template 'home.html')
 def saveFavourite(request):
     fav = '' # transformamos un request del template en una Card.
