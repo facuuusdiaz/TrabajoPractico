@@ -1,10 +1,9 @@
 # capa de servicio/lógica de negocio
 
 from ..persistence import repositories
-from ..utilities import translator
 from django.contrib.auth import get_user
-from layers.transport.transport import getAllImages as get_data_from_api
-from layers.utilities.translator import fromRequestIntoCard
+from ..transport.transport import getAllImages as get_data_from_api
+from ..utilities.translator import fromRequestIntoCard
 
 ################################################################################################
 def getAllImages(input=None):
