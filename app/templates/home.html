@@ -45,7 +45,7 @@
                                 <img src="{{ img.url }}" class="card-img-top" alt="imagen">
                             </div>
                             <div class="col-md-8">
-                                <div class="card-body {% if img.status == 'Alive' %}border-success{% elif img.status == 'Dead' %}border-danger{% else %}border-warning{% endif %}"> 
+                                <div class="card-body {% if img.status == 'Alive' %}border-success{% elif img.status == 'Dead' %}border-danger{% else %}border-warning{% endif %}">
                                     {# Cambio 1: Condición para el color del borde #}
                                     {# Se aplica la clase border-success (verde), border-danger (rojo) o border-warning (naranja) según el estado #}
 
@@ -69,6 +69,7 @@
                                             {% csrf_token %}
                                             <input type="hidden" name="name" value="{{ img.name }}">
                                             <input type="hidden" name="url" value="{{ img.url }}">
+                                            <input type="hidden" name="status" value="{{ img.status }}">
                                             {% extends 'header.html' %} {% block content %}
 <main>
     <h1 class="text-center">Buscador Rick & Morty</h1>
@@ -150,3 +151,4 @@
     </div>
 </main>
 {% endblock %}
+                                            
