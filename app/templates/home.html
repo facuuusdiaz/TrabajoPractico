@@ -70,7 +70,10 @@
                                 <input type="hidden" name="last_location" value="{{ img.last_location }}">
                                 <input type="hidden" name="first_seen" value="{{ img.first_seen }}">
                                 {% if img in favourite_list %}
-                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white" disabled>✔️ Ya está en favoritos</button>
+                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white" disabled>✔️ Ya está
+                                {% else %}
+                                <button type="submit" class="btn btn-primary btn-sm float-left" style="color:white">⭐ Agregar a favoritos</button>
+                                {% endif %} <form> </div> {% endif %}
                                 
 
                             
