@@ -20,7 +20,7 @@ def home(request):
     images = [fromRequestIntoCard(image_data) for image_data in images_data]
 
     # Obtener personajes de la base de datos (ejemplo)
-    # repo_data = Character.objects.all()  # Consulta a la base de datos (reemplaza con tu lógica)
+    # repo_data = Character.objects.all()  # Consulta a la base de datos 
     # db_characters = [fromRepositoryIntoCard(repo_dict) for repo_dict in repo_data]
     db_characters = []  # Inicializa como lista vacía si no tienes la lógica de la BD
 
@@ -30,8 +30,8 @@ def home(request):
     if request.method == 'POST':  # Si se recibe un formulario
         if 'add_character' in request.POST:  # Si el formulario es para agregar un personaje
             card = fromTemplateIntoCard(request)  # Convertir datos del formulario en Card
-            # ... (guardar card en la base de datos - agrega tu lógica aquí)
-        # ... (manejar otros formularios si es necesario)
+            #(guardar card en la base de datos )
+        #(manejar otros formularios si es necesario)
 
     return render(request, 'home.html', {
         'images': images,

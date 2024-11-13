@@ -13,7 +13,7 @@ def getAllImages(input=None):
     # Recorre la colección de datos JSON crudos y crea objetos Card
     for item in json_collection:
         try:
-            # Verifica si la clave 'image' está presente
+            # Verifica si la clave "image" está presente
             if 'image' in item:
                 # Convierte el item en un objeto Card y agrégalo a la lista
                 images.append(fromRequestIntoCard(item))
