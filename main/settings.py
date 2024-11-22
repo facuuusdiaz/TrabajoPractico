@@ -16,6 +16,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '::1']
 
+#Alta de Usuarios
+
+#### settings.py
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'your_account@gmail.com'
+EMAIL_HOST_PASSWORD = 'your app password'
 
 # Application definition
 
